@@ -108,11 +108,12 @@ jobs:
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
-          context: ./gateway/
+          context: ./nginx/
           push: true
           tags: maximylis/kittygram_gateway
 
   # deploy:
+  #   runs-on: ubuntu
 
   # send_massage:
   #   runs-on: ubuntu-latest
