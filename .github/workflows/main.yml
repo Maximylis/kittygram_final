@@ -91,6 +91,17 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_LOGIN }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push to DockerHub
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend/
+          push: true
+          tags: maximylis/kittygram_frontend
 
   built_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
