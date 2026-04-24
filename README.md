@@ -1,26 +1,108 @@
-#  Как работать с репозиторием финального задания
+# Kittygram
 
-## Что нужно сделать
+[![Main Kittygram workflow](https://github.com/Port-tf/kittygram/actions/workflows/main.yml/badge.svg)](https://github.com/Port-tf/kittygram/actions/workflows/main.yml)
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+Проект Kittygram - платформа для публикации фотографий котов с возможностью ставить лайки.
 
-## Как проверить работу с помощью автотестов
+## О проекте
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+**Kittygram** — это веб-приложение для публикации фотографий котов с возможностью ставить лайки. Пользователи могут загружать изображения своих питомцев, просматривать ленту других пользователей и отмечать понравившиеся фото.
+
+### Функциональность
+
+- Регистрация и аутентификация пользователей
+- Загрузка фотографий котов
+- Просмотр ленты с фотографиями
+- Постановка и отмена лайков
+- Адаптивный интерфейс
+
+## Технологический стек
+
+### Backend
+- **Django** (5.1.1) — основной фреймворк
+- **Django REST Framework** (3.15.2) — API
+- **Djoser** (2.3.1) — аутентификация
+- **PostgreSQL** (13.10) — база данных
+- **Psycopg2-binary** (2.9.11) — драйвер PostgreSQL
+- **Pillow** (11.0.0) — работа с изображениями
+- **Gunicorn** — WSGI сервер
+
+### Тестирование и качество кода
+- **Pytest** (8.3.3) — тестирование
+- **Pytest-django** (4.9.0) — интеграция Django с pytest
+- **Pytest-pythonpath** (0.7.3) — управление путями в тестах
+- **Flake8** (7.3.0) — линтинг
+- **Flake8-isort** (7.0.0) — проверка сортировки импортов
+- **PyYAML** (6.0.1) — работа с YAML
+
+### Frontend
+- **React** (18) — библиотека для UI
+- **JavaScript/JSX**
+
+### Инфраструктура
+- **Docker** & **Docker Compose** — контейнеризация
+- **Nginx** — веб-сервер и reverse-proxy
+- **GitHub Actions** — CI/CD
+
+## Как заполнить .env
+
+Создайте файл `.env` в корне проекта:
+```
+POSTGRES_DB=kittygram
+POSTGRES_USER=kittygram_user
+POSTGRES_PASSWORD=kittygram_password
+DB_NAME=name_db
+DB_USER=name_user
+DB_PASSWORD=db_password
+DB_HOST=db
+DB_PORT=5432
+SECRET_KEY=your-secret-key
+DEBUG=True
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+## Быстрое развертывание Kittygram
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+### Требования на сервере
+```
+Установите Docker на сервере (одна команда)
+curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+```
 
-## Чек-лист для проверки перед отправкой задания
+### Настройка секретов в GitHub
+Добавьте эти секреты:
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+DOCKERHUB_USERNAME: логин от Docker Hub
+DOCKERHUB_PASSWORD: пароль от Docker Hub
+HOST: IP или домен сервера
+USER: имя пользователя
+SSH_KEY: приватный SSH ключ
+TELEGRAM_ID: ваш Telegram ID
+TELEGRAM_TOKEN: токен бота
+POSTGRES_PASSWORD: пароль для БД
+
+### Настройка сервера
+Подключитесь к серверу один раз через SSH и создайте папку:
+```
+ssh root@ваш-сервер
+mkdir -p ~/kittygram
+exit
+```
+
+### Создайте файл .env на сервере
+
+### Всё! Деплой автоматический
+При каждом пуше в ветку main workflow самостоятельно:
+
+Запускает тесты
+Собирает Docker образы
+Пушит их на Docker Hub
+Подключается к серверу по SSH
+Обновляет и запускает контейнеры
+Применяет миграции
+Собирает статику
+Присылает уведомление в Telegram
+
+# Автор 
+
+## Maximylis
+    GitHub: @Maximylis
