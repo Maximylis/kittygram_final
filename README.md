@@ -70,7 +70,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
 
 ### Настройка секретов в GitHub
 Добавьте эти секреты:
-
+```
 DOCKERHUB_USERNAME: логин от Docker Hub
 DOCKERHUB_PASSWORD: пароль от Docker Hub
 HOST: IP или домен сервера
@@ -79,6 +79,7 @@ SSH_KEY: приватный SSH ключ
 TELEGRAM_ID: ваш Telegram ID
 TELEGRAM_TOKEN: токен бота
 POSTGRES_PASSWORD: пароль для БД
+```
 
 ### Настройка сервера
 Подключитесь к серверу один раз через SSH и создайте папку:
