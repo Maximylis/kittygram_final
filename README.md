@@ -1,6 +1,6 @@
 # Kittygram
 
-[![Main Kittygram workflow](https://github.com/Maximylis/kittygram/actions/workflows/main.yml/badge.svg)](https://github.com/Maximylis/kittygram/actions/workflows/main.yml)
+[![Main Kittygram workflow](https://github.com/Maximylis/kittygram_final/actions/workflows/main.yml/badge.svg)](https://github.com/Maximylis/kittygram_final/actions/workflows/main.yml)
 
 Проект Kittygram - платформа для публикации фотографий котов с возможностью ставить лайки.
 
